@@ -1,8 +1,13 @@
 <template>
   <div class='item_opera'>
-      <button><i class="iconfont icon-xihuan_"></i></button>
+      <button @click="addLike"><i class="iconfont icon-xihuan_"></i></button>
       <p class="plus_icon">+</p><p>{{count}}</p>
-      <button><i class="iconfont icon-pinglun"></i></button>
+      <button @click='showComment'><i class="iconfont icon-pinglun"></i></button>
+      <div v-if="showComTextarea" class='comment_window'>
+          <textarea name="commentValue" id="" cols="30" rows="10"></textarea>
+          <button @click="commitComment" class="confirm_commit">确定</button>
+          <button @click="showComTextarea=false" class="confirm_commit">取消</button>
+      </div>
   </div>
 </template>
 
@@ -16,7 +21,24 @@ export default {
         default:0
     },
   },
-  methods: {}
+  data(){
+      return {
+          showComTextarea:true
+      }
+  },
+  methods: {
+      addLike(){
+
+      },
+      showComment(){
+          this.showComTextarea=true;
+      },
+      commitComment(){
+
+          this.showComTextarea=true;
+
+      }
+  }
 };
 </script>
 
@@ -30,12 +52,13 @@ export default {
 .item_opera button{
     font-size:40rpx;
     padding: 0;
-    margin:0;
     line-height: 1;
     display: inline-block;
     background: none;
-    /* position: inherit; */
     vertical-align: middle;
+}
+.item_opera button{
+    margin:0 30rpx;
 }
 i.icon-xihuan_{
     color:red;
@@ -48,5 +71,26 @@ i.icon-pinglun{
 }
 .item_opera p.plus_icon{
     margin-top:-1rpx;
+}
+.comment_window{
+    width:100vw;
+    height: 100vh;
+    background: rgba(0,0,0,.5);
+    text-align: center;
+    position: fixed;
+    left:0;
+    top:0;
+}
+.comment_window textarea{
+    display: inline-block;
+    margin-top:20%;
+    background: #fff;
+}
+.comment_window button.confirm_commit{
+    display: inine-block;
+    width:40%;
+    background: #fff;
+    padding:30rpx;
+    margin:30rpx;
 }
 </style>

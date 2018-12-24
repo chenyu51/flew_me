@@ -48,12 +48,12 @@ export default {
   border-radius: 50%;
   width: 100rpx;
   height: 100rpx;
-  background: rgba(161, 240, 210, 0.5);
+  background: rgba(255, 3, 3, 0.5);
   position: fixed;
 }
 .move_area {
   width: 100vw;
   height: 100vh;
-  background: rgba(220, 240, 243, 0.3);
+  background: rgba(221, 243, 247, 0.3);
 }
 </style>

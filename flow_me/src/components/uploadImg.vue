@@ -1,6 +1,6 @@
 <template>
   <div class="upload_img">
-      <button @tap="uploadImg">上传</button>
+      <button @click="uploadImg">上传</button>
       <imgs :imgs='imgs'></imgs>
   </div>
 </template>
@@ -18,7 +18,7 @@ export default {
     }
   },
   async uploadImg(){
-    console.log('up')
+    console.log('tools')
     const pic=await tools.TackPic();
     console.log(pic)
   }

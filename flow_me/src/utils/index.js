@@ -53,8 +53,13 @@ export function uploadFile({url,filepath,data}) {
     })
   })
 }
-
-
+    //预览图片
+export function previewPic(src, imgArr) {
+  wx.previewImage({
+      current: src,
+      urls: imgArr,
+  });
+}
 
 export default {
   formatNumber,

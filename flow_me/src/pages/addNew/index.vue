@@ -32,7 +32,7 @@ export default {
 }
 .edit_page textarea{
   display: inline-block;
-  background:rgba(221, 216, 216,.3);
+  background:rgba(247, 220, 231, 0.3);
   box-shadow: 0 0 10px 5px rgba(0,0,0,.1);
   width: 100%;
   text-align: left;

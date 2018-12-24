@@ -1,6 +1,7 @@
 <template>
   <div class="list_item">
-    <p @click='editIt(item.id)'>ddd</p>
+    <p class='content' @click='editIt(item.id)'>ddd</p>
+    <p class="timer">2018-10-12 12:12:12</p>
     <imgs :imgs='item.imgs'></imgs>
     <comment></comment>
     <commentList></commentList>
@@ -38,8 +39,18 @@ export default {
 
 <style>
 .list_item{
-    margin:10rpx 0;
+    margin:20rpx 0;
     padding:20rpx;
     background: #fff;
+    box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, .1);
+}
+.list_item>p{
+  padding:0 30rpx;
+  padding-bottom:0;
+}
+.list_item>p.timer{
+  padding:0 30rpx;
+  color:#999;
+  font-size:30rpx;
 }
 </style>

@@ -2,7 +2,7 @@
   <div>
     <img class='little_img' v-for="(src,i) in imgs" :src="src" alt="图片" :key="src" @tap="bigger(i)">
     <swiper v-if="showBigger" :current="current">
-      <block v-for="(src,i) in imgs" :key='src'>
+      <block v-for="src in imgs" :key='src'>
         <swiper-item>
           <img :src="src" class="slide-image" width="100%" height="150">
         </swiper-item>
@@ -14,7 +14,7 @@
 <script>
 export default {
   props: {
-    imgs:Array
+    imgs:{type:Array,default:[]}
   },
   data(){
       return{
