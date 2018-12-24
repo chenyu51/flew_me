@@ -32,10 +32,14 @@ export default {
 }
 .edit_page textarea{
   display: inline-block;
-  background:rgba(219, 219, 219, 0.3);
+  background:rgba(253, 233, 233, 0.2);
+  /* background:rgba(219, 219, 219, 0.3); */
   box-shadow: 0 0 10px 5px rgba(0,0,0,.1);
   width: 100%;
   text-align: left;
   padding:30rpx;
+}
+button{
+  background: #FFF0F5;
 }
 </style>

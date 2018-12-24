@@ -48,7 +48,7 @@ export default {
   border-radius: 50%;
   width: 100rpx;
   height: 100rpx;
-  background: rgba(247, 188, 205, 0.5);
+  background: rgba(255, 240, 245,.8);
   position: fixed;
 }
 .move_area {

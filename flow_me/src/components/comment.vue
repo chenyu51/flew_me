@@ -3,10 +3,10 @@
       <button @click="addLike"><i class="iconfont icon-xihuan_"></i></button>
       <p class="plus_icon">+</p><p>{{count}}</p>
       <button @click='showComment'><i class="iconfont icon-pinglun"></i></button>
-      <div v-if="showComTextarea" class='comment_window'  @click.self="showComTextarea=false">
+      <div :class="showComTextarea?'comment_window_show':'comment_window_hide'" class='comment_window'  @click.self="showComTextarea=false">
           <textarea name="commentValue" id="" cols="30" rows="10" autofocus></textarea>
           <button @click="commitComment" class="confirm_commit">确定</button>
-          <button @click="showComTextarea=false" class="confirm_commit">取消</button>
+          <button @click="showComTextarea=false" class="confirm_commit cancel_commit">取消</button>
       </div>
   </div>
 </template>
@@ -23,7 +23,7 @@ export default {
   },
   data(){
       return {
-          showComTextarea:true
+          showComTextarea:false
       }
   },
   methods: {
@@ -80,13 +80,25 @@ i.icon-pinglun{
     position: fixed;
     left:0;
     top:0;
+    z-index: 99999;
 }
+.comment_window_show{
+    transform: scale(1);
+    transition: all linear .01s;
+}
+.comment_window_hide{
+    transform: scale(0)
+}
+
 .comment_window textarea{
     display: inline-block;
     margin-top:20%;
     padding:30rpx;
+    width:700rpx;
     background: #fff;
     text-align: left;
+    box-sizing: border-box;
+    box-shadow: 0 0 3px 5px rgba(253, 233, 233, 0.5);
 }
 .comment_window button.confirm_commit{
     display: inine-block;
@@ -94,5 +106,9 @@ i.icon-pinglun{
     background: #fff;
     padding:30rpx;
     margin:30rpx;
+    background: #FFF0F5;
+}
+.comment_window button.cancel_commit{
+    background: rgb(238, 237, 237);
 }
 </style>

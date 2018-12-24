@@ -43,4 +43,7 @@ export default {
   color: blue;
   border: 1px solid blue;
 }
+button{
+  background: #FFF0F5;
+}
 </style>

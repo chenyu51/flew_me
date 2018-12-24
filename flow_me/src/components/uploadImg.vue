@@ -32,7 +32,7 @@ export default {
 }
 .upload_img button{
   display: inline-block;
-  background: rgba(208, 240, 230, 0.2);
+  background:#FFF0F5;
   color:#666;
 }
 </style>
