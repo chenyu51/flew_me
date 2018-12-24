@@ -1,7 +1,7 @@
 <template>
   <div class="list_item">
     <p class='content' @click='editIt(item.id)'>ddd</p>
-    <p class="timer">2018-10-12 12:12:12</p>
+    <p class="timer" @click='editIt(item.id)'>2018-10-12 12:12:12</p>
     <imgs :imgs='item.imgs'></imgs>
     <comment></comment>
     <commentList></commentList>

@@ -3,8 +3,8 @@
       <button @click="addLike"><i class="iconfont icon-xihuan_"></i></button>
       <p class="plus_icon">+</p><p>{{count}}</p>
       <button @click='showComment'><i class="iconfont icon-pinglun"></i></button>
-      <div v-if="showComTextarea" class='comment_window'>
-          <textarea name="commentValue" id="" cols="30" rows="10"></textarea>
+      <div v-if="showComTextarea" class='comment_window'  @click.self="showComTextarea=false">
+          <textarea name="commentValue" id="" cols="30" rows="10" autofocus></textarea>
           <button @click="commitComment" class="confirm_commit">确定</button>
           <button @click="showComTextarea=false" class="confirm_commit">取消</button>
       </div>
@@ -84,7 +84,9 @@ i.icon-pinglun{
 .comment_window textarea{
     display: inline-block;
     margin-top:20%;
+    padding:30rpx;
     background: #fff;
+    text-align: left;
 }
 .comment_window button.confirm_commit{
     display: inine-block;
