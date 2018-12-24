@@ -15,7 +15,7 @@ export default {
     },
     methods: {
         goAdd(type){
-            wx.navigateTo({ url: `../pages/addNew/main?type=${type}`});
+            wx.navigateTo({ url: `../addNew/main?type=${type}`});
         }
     }
 }

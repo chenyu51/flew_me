@@ -1,17 +1,18 @@
 <template>
-  <btn>
+  <btn @toggle="toggleList" :contentType='contentType'>
     <item></item>
     <item></item>
   </btn>
 </template>
 
 <script>
-import btn from '@/components/btn'
+import btn from '@/components/mainBtn'
 import item from '@/components/item'
 
 export default {
   data () {
     return {
+      contentType:1,
       motto: 'Hello World',
       userInfo: {}
     }
@@ -23,12 +24,14 @@ export default {
   },
 
   methods: {
+    toggleList(contentType){
+      this.contentType=contentType;
+      const title=contentType===1?'我的喜悦':'我的伤心';
+      wx.setNavigationBarTitle({title});
+    },
     bindViewTap () {
       const url = '../logs/main'
       wx.navigateTo({ url })
-    },
-    toggle () {
-      wx.setNavigationBarTitle('')
     },
     getUserInfo () {
       // 调用登录接口

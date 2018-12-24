@@ -1,7 +1,7 @@
 <template>
   <div class="list_item">
-    <p>ddd</p>
-    <imgs :imgs='item'></imgs>
+    <p @click='editIt(item.id)'>ddd</p>
+    <imgs :imgs='item.imgs'></imgs>
     <comment></comment>
     <commentList></commentList>
   </div>
@@ -14,14 +14,25 @@ import comment from '@/components/comment'
 import commentsList from '@/components/commentsList'
 export default {
   props: {
-    item: Object
+    item: {
+      type:Object,
+      default:{
+        id:'',
+        content:'',
+        imgs:[]
+      }
+    }
   },
   components:{
       imgs,
       comment,
       commentsList
   },
-  methods: {}
+  methods: {
+    editIt(id){
+        wx.navigateTo({ url: `../addNew/main?id=${id}`});
+    }
+  }
 };
 </script>
 

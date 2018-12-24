@@ -17,6 +17,12 @@ export default {
       add: false
     };
   },
+  props:{
+      contentType:{
+          type:Number,
+          default:1
+      }
+  },
   components: { addType },
   methods: {
     toggle() {
@@ -24,6 +30,7 @@ export default {
         this.longTap = false;
         return;
       }
+      this.$emit('toggle',this.contentType===1?0:1);
     },
     showWriteBtns() {
       this.longTap = true;
