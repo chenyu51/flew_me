@@ -1,11 +1,11 @@
 <template>
   <btn>
     <item></item>
+    <item></item>
   </btn>
 </template>
 
 <script>
-import card from '@/components/card'
 import btn from '@/components/btn'
 import item from '@/components/item'
 
@@ -18,7 +18,6 @@ export default {
   },
 
   components: {
-    card,
     btn,
     item
   },
@@ -50,7 +49,7 @@ export default {
 
   created () {
     // 调用应用实例的方法获取全局数据
-    this.getUserInfo()
+    // this.getUserInfo()
   }
 }
 </script>
