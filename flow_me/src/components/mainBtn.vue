@@ -1,10 +1,10 @@
 <template>
   <movable-area class="move_area" @tap="hiddeAdd">
+    <slot></slot>
+    <addType :show="add" @choosed="hiddeAdd"></addType>
     <movable-view direction="all">
       <button class="main_btn" @tap="toggle" @longpress="showWriteBtns"></button>
     </movable-view>
-    <slot></slot>
-    <addType :show="add" @choosed="hiddeAdd"></addType>
   </movable-area>
 </template>
 
@@ -43,7 +43,6 @@ export default {
   width: 100rpx;
   height: 100rpx;
   background: rgba(255, 240, 245,.8);
-  position: fixed;
 }
 .move_area {
   width: 100vw;
