@@ -37,6 +37,7 @@ export default {
   font-size:25rpx;
   color:#999999;
   padding:30rpx;
+  position: relative;
 }
 .content{
   font-weight:bolder;
@@ -45,7 +46,8 @@ export default {
   color:#333;
 }
 .delete_btn{
-  float: right;
   font-size:30rpx;
+  position: absolute;
+  right: 10rpx;
 }
 </style>

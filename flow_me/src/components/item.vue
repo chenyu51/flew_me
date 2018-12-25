@@ -5,7 +5,6 @@
     <imgs :imgs='item.imgs'></imgs>
     <comment :item='item' @getCom='getComments'></comment>
     <p style="margin-bottom:10px;"></p>
-    {{item.id}}
     <commentList v-for='dt in comments' :key='dt.content' @getCom='getComments' :comItem='dt'></commentList>
   </div>
 </template>
