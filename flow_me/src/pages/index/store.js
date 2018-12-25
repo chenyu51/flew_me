@@ -34,7 +34,7 @@ const store = new Vuex.Store({
       wx.setNavigationBarTitle({title});
       ctx.commit('toggleType',contentType)
       ctx.dispatch('getList')
-    },
+    }
   }
 })
 

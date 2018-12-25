@@ -61,9 +61,9 @@ export function previewPic(src, imgArr) {
       urls: imgArr,
   });
 }
-export function getDb(){
+export function getDb(name){
   const db = wx.cloud.database();
-  const lists = db.collection('flowList');
+  const lists = db.collection(name||'flowList');
   return lists;
 }
 

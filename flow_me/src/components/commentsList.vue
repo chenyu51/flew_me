@@ -19,11 +19,12 @@ export default {
     }
   },
   created() {
-     this.itemDb=getDb().doc(this.comItem.id);
+     this.itemDb=getDb('comments').doc(this.comItem._id);
   },
   methods: {
-    deleteCom(){
-      this.itemDb.remove();
+    async deleteCom(){
+      await this.itemDb.remove();
+      this.$emit('getCom',true);
     }
   }
 }

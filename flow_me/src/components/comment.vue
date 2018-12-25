@@ -47,16 +47,14 @@ export default {
       },
       commitComment(){
         const $this=this;
-        const comments=this.item.comments||[]
-        comments.push({content:$this.commentValue,createTime:formatTime(new Date),id:common_guid()})
-        this.itemDb.update({
-            data:{
-                comments
-            }
+        const comments={content:$this.commentValue,createTime:formatTime(new Date),pid:this.item._id};
+        getDb('comments').add({
+            data:comments
         }).then(res=>{
               console.log(res);
               $this.showComTextarea=false;
-              $this.$store.dispatch('getList')
+              $this.commentValue='';
+              $this.$emit('getCom',true);
         }).catch(e=>console.log(e))
       },
       DeleteItem(){

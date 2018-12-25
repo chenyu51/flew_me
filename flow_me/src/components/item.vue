@@ -3,9 +3,9 @@
     <p class='content' @click='editIt(item._id)'>{{item.content}}</p>
     <p class="timer" @click='editIt(item._id)'>{{item.createTime}}</p>
     <imgs :imgs='item.imgs'></imgs>
-    <comment :item='item'></comment>
+    <comment :item='item' @getCom='getComments'></comment>
     <p style="margin-bottom:10px;"></p>
-    <commentList v-for='dt in item.comments' :key='dt.content' :comItem='dt' ></commentList>
+    <commentList v-for='dt in comments' :key='dt.content' @getCom='getComments' :comItem='dt'></commentList>
   </div>
 </template>
 
@@ -14,7 +14,7 @@
 import imgs from '@/components/imgs'
 import comment from '@/components/comment'
 import commentList from '@/components/commentsList'
-import {formatTime} from '@/utils/index.js'
+import {getDb,formatTime} from '@/utils/index.js'
 
 export default {
   props: {
@@ -27,12 +27,30 @@ export default {
       }
     }
   },
+  data(){
+    return{
+      comments:[]
+    }
+  },
   components:{
       imgs,
       comment,
       commentList
   },
+  mounted(){
+    this.getComments();
+  },
   methods: {
+    updateCom(e){
+      this.getCom=e;
+    },
+    getComments(){
+      const $this=this;
+      getDb('comments').where({pid:this.item.id}).get().then(res=>{
+        console.log(res)
+        this.comments=res.data;
+      }).catch(e=>console.log(e))
+    },
     editIt(id){
         wx.navigateTo({ url: `../addNew/main?id=${id}`});
     }
