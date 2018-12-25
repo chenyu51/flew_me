@@ -26,6 +26,10 @@ export default {
     this.db=getDb();
     this.getItem();
   },
+  onHide(){
+    this.content='';
+    this.query={};
+  },
   methods: {
     addNew(){
       this.db.add({
