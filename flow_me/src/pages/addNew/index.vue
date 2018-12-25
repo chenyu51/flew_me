@@ -21,7 +21,6 @@ export default {
     }
   },
   onLoad(e){
-    console.log(e)
     this.query=e;
     this.db=getDb();
     this.getItem();

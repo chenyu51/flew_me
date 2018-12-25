@@ -62,6 +62,16 @@ export default {
 .delete_btn{
   font-size:30rpx;
   line-height: 1;
-  margin:0 20rpx;
+  margin:0 10rpx;
+  display: inline-block;
+  border:1px solid rgb(245, 197, 197);
+  line-height:40rpx;
+  width:40rpx;
+  background: #f1c0c0;
+  color:#fff;
+  text-align: center;
+  border-radius: 50%;
+  
 }
+
 </style>

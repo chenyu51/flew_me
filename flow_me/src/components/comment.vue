@@ -4,7 +4,7 @@
       <button @click="addLike(1)"><i class="iconfont icon-xihuan_"></i></button>
       <p class="plus_icon">+</p><p>{{plus}}</p>
       <button @click='showComment'><i class="iconfont icon-pinglun"></i></button>
-      <button style="vertical-align:bottom;" @click='DeleteItem'>D</button>
+      <button class="delete_btn" @click='DeleteItem'>D</button>
       <div :class="showComTextarea?'comment_window_show':'comment_window_hide'" class='comment_window'  @click.self="showComTextarea=false">
           <textarea v-model='commentValue' name="commentValue" id="" cols="30" rows="10" autofocus></textarea>
           <button @click="commitComment" class="confirm_commit">确定</button>
@@ -174,5 +174,10 @@ i.icon-pinglun{
 }
 .comment_window button.cancel_commit{
     background: rgb(238, 237, 237);
+}
+.item_opera button.delete_btn{
+    vertical-align:bottom;
+    background: #f1c0c0;
+    color:#fff;
 }
 </style>
