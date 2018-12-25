@@ -3,9 +3,9 @@
     <p class='content' @click='editIt(item._id)'>{{item.content}}</p>
     <p class="timer" @click='editIt(item._id)'>{{item.createTime}}</p>
     <imgs :imgs='item.imgs'></imgs>
-    <comment :item='item' @getCom='getComments'></comment>
+    <comment :item='item' @getCom='getComments' @doEdit='editCom' :edit='editComment'></comment>
     <p style="margin-bottom:10px;"></p>
-    <commentList v-for='dt in comments' :key='dt.content' @getCom='getComments' :comItem='dt'></commentList>
+    <commentList v-for='dt in comments' :key='dt.content' @getCom='getComments' :comItem='dt' @doEdit='editCom'></commentList>
   </div>
 </template>
 
@@ -30,7 +30,7 @@ export default {
   data(){
     return{
       comments:[],
-      doEdit:false//编辑批注
+      editComment:false//编辑批注
     }
   },
   components:{
@@ -44,6 +44,9 @@ export default {
   methods: {
     updateCom(e){
       this.getCom=e;
+    },
+    editCom(e){
+      this.editComment=e
     },
     getComments(){
       const $this=this;

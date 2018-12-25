@@ -18,7 +18,8 @@
 import {getDb,common_guid,formatTime} from '@/utils/index.js'
 export default {
   props: {
-    item: Object
+    item: Object,
+    edit:null
   },
   data(){
       return {
@@ -37,8 +38,8 @@ export default {
       }
   },
   watch:{
-      '$store.state.eidtComment'(){
-          if(this.eidtComment._id){
+      'eidtComment'(){
+          if(this.edit&&this.eidtComment.content){
               this.showComTextarea=true;
               this.commentValue=this.eidtComment.content;
           }
@@ -74,6 +75,7 @@ export default {
               $this.showComTextarea=false;
               $this.commentValue='';
               $this.$emit('getCom',true);
+              $this.$emit('doEdit',false);
               $this.$store.dispatch('commitEditData');
         }).catch(e=>console.log(e))
       },

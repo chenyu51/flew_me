@@ -30,6 +30,7 @@ export default {
       this.$emit('getCom',true);
     },
     editCom(){
+      this.$emit('doEdit',true);
       this.$store.dispatch('commitEditData',this.comItem._id);
     }
   }
