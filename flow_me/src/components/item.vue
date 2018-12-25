@@ -51,7 +51,6 @@ export default {
     getComments(){
       const $this=this;
       getDb('comments').where({pid:$this.item._id}).get().then(res=>{
-        console.log(res)
         this.comments=res.data;
       }).catch(e=>console.log(e))
     },

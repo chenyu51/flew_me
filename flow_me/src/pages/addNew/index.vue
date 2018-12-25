@@ -37,7 +37,6 @@ export default {
           plus:0
         }
       }).then((res)=>{
-        console.log(res)
         goback()
       }).catch(e=>console.log(e))
     },
@@ -47,7 +46,6 @@ export default {
           content:this.content
         }
       }).then(res=>{
-        console.log(res)
         goback()
       }).catch(e=>console.log(e));
     },
