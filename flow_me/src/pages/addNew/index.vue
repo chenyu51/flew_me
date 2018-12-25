@@ -8,7 +8,7 @@
 
 <script>
 import uploadImg from '@/components/uploadImg'
-import {getDb,formatTime} from '@/utils/index.js'
+import {getDb,formatTime,goback} from '@/utils/index.js'
 
 export default {
   components: {
@@ -21,6 +21,7 @@ export default {
     }
   },
   onLoad(e){
+    console.log(e)
     this.query=e;
     this.db=getDb();
     this.getItem();
@@ -37,15 +38,17 @@ export default {
         }
       }).then((res)=>{
         console.log(res)
+        goback()
       }).catch(e=>console.log(e))
     },
     update(){
-      this.db.doc(this.query.id).update({
+      this.db.doc(this.query._id).update({
         data:{
           content:this.content
         }
       }).then(res=>{
         console.log(res)
+        goback()
       }).catch(e=>console.log(e));
     },
     getItem(){
@@ -53,13 +56,12 @@ export default {
       this.db.where({
         _id:this.query.id
       }).get().then(res=>{
-        console.log(res)
         this.query=res.data[0];
         this.content=res.data[0].content
       }).catch(e=>console.log(e))
     },
     confirmFinish(){
-      if(this.query.id){
+      if(this.query._id){
         this.update();
       }else{
         this.addNew();

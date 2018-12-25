@@ -94,7 +94,11 @@ export function myFormatTime (date) {
 
 	return [year, month, day].map(formatNumber).join('/') + ' ' + [hour, minute, second].map(formatNumber).join(':');
 };
-
+export function goback(){
+  wx.navigateBack({
+    delta: 1 //返回的页面数，如果 delta 大于现有页面数，则返回到首页,
+  });
+}
 
 export default {
   formatNumber,
@@ -104,5 +108,6 @@ export default {
   TackPic,
   getDb,
   common_guid,
-  formatTime
+  formatTime,
+  goback
 }

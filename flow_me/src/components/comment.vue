@@ -1,6 +1,7 @@
 <template>
   <div class='item_opera'>
-      <button @click="addLike"><i class="iconfont icon-xihuan_"></i></button>
+      <button @click="addLike(-1)"><i class="iconfont icon-xihuan_ minus_icon"></i></button>
+      <button @click="addLike(1)"><i class="iconfont icon-xihuan_"></i></button>
       <p class="plus_icon">+</p><p>{{plus}}</p>
       <button @click='showComment'><i class="iconfont icon-pinglun"></i></button>
       <button style="vertical-align:bottom;" @click='DeleteItem'>D</button>
@@ -31,8 +32,8 @@ export default {
      this.plus=this.item.plus;
   },
   methods: {
-      addLike(){
-        this.plus+=1;
+      addLike(v){
+        this.plus+=v;
         this.itemDb.update({
             data:{
                 plus:this.plus
@@ -55,12 +56,20 @@ export default {
                         })
             }
         })
-          .then(res=>{console.log(res);$this.showComTextarea=true;})
+          .then(res=>{
+              console.log(res);
+              $this.showComTextarea=true;
+              $this.$store.dispatch('getList')
+            })
           .catch(e=>console.log(e))
       },
       DeleteItem(){
+          const $this=this;
           this.itemDb.remove()
-          .then(res=>console.log(res))
+          .then(res=>{
+              console.log(res);
+              $this.$store.dispatch('getList')
+            })
           .catch(e=>console.log(e))
       }
   }
@@ -88,6 +97,9 @@ export default {
 }
 i.icon-xihuan_{
     color:red;
+}
+i.minus_icon{
+    color:#999;
 }
 i.icon-pinglun{
     color:rgb(77, 75, 75);

@@ -1,6 +1,6 @@
 <template>
-  <btn @toggle="toggleList" :contentType='contentType'>
-    <item v-for='data in list' :key='data._id' :item='data'></item>
+  <btn @toggle="toggleList">
+    <item v-for='data in list' :key='data._id' :item='data' @update='getList'></item>
   </btn>
 </template>
 
@@ -12,10 +12,6 @@ import {getDb} from '@/utils/index.js'
 export default {
   data () {
     return {
-      contentType:1,
-      motto: 'Hello World',
-      userInfo: {},
-      list:[],
       pageSize:10,
       pageNo:1
     }
@@ -25,25 +21,17 @@ export default {
     btn,
     item
   },
-
+  computed: {
+    list(){
+      return this.$store.state.list;
+    }
+  },
   methods: {
     toggleList(contentType){
-      this.contentType=contentType;
-      const title=contentType===1?'我的喜悦':'我的伤心';
-      wx.setNavigationBarTitle({title});
-      this.getList();
+      this.$store.dispatch('toggleList',contentType);
     },
     getList(){
-      const db=getDb();
-      db.where({
-        type:this.contentType+''
-      }).get().then((res)=>{
-        this.list=res.data;
-      }).catch(e=>console.log(e))
-    },
-    bindViewTap () {
-      const url = '../logs/main'
-      wx.navigateTo({ url })
+      this.$store.dispatch('getList')
     },
     getUserInfo () {
       // 调用登录接口
@@ -56,9 +44,6 @@ export default {
           })
         }
       })
-    },
-    clickHandle (msg, ev) {
-      console.log('clickHandle:', msg, ev)
     }
   },
 
@@ -67,8 +52,10 @@ export default {
     // this.getUserInfo()
     this.getList()
   },
+  onShow(){
+     this.getList()
+  },
   onPullDownRefresh(){
-    console.log('pull')
     this.getList()
   }
 
