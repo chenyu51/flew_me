@@ -5,6 +5,7 @@
     <imgs :imgs='item.imgs'></imgs>
     <comment :item='item' @getCom='getComments'></comment>
     <p style="margin-bottom:10px;"></p>
+    {{item.id}}
     <commentList v-for='dt in comments' :key='dt.content' @getCom='getComments' :comItem='dt'></commentList>
   </div>
 </template>
@@ -46,7 +47,7 @@ export default {
     },
     getComments(){
       const $this=this;
-      getDb('comments').where({pid:this.item.id}).get().then(res=>{
+      getDb('comments').where({pid:$this.item._id}).get().then(res=>{
         console.log(res)
         this.comments=res.data;
       }).catch(e=>console.log(e))
