@@ -58,7 +58,7 @@ export default {
                 plus:this.plus
             }
         })
-          .then(res=>console.log(res))
+          .then(res=>console.log('更改plus成功'))
           .catch(e=>console.log(e))
       },
       showComment(){
@@ -71,7 +71,6 @@ export default {
         getDb('comments').add({
             data:comments
         }).then(res=>{
-              console.log(res);
               $this.showComTextarea=false;
               $this.commentValue='';
               $this.$emit('getCom',true);
@@ -86,7 +85,6 @@ export default {
                   content:$this.commentValue
               }
           }).then(res=>{
-              console.log(res)
               $this.showComTextarea=false;
               $this.commentValue='';
               $this.$emit('getCom',true);
@@ -96,7 +94,6 @@ export default {
           const $this=this;
           this.itemDb.remove()
           .then(res=>{
-              console.log(res);
               $this.$store.dispatch('getList')
             })
           .catch(e=>console.log(e))

@@ -42,7 +42,6 @@ const store = new Vuex.Store({
     commitEditData(ctx,id){
       if(!id){ctx.commit('updateComment',{});return;}
       const db=getDb('comments');
-      console.log('ddd')
       db.where({
         _id:id
       }).get().then(res=>{
