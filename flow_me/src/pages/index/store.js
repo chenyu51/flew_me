@@ -10,7 +10,8 @@ Vue.use(Vuex)
 const store = new Vuex.Store({
   state: {
     list: [],
-    contentType:1
+    contentType:1,
+    eidtComment:{}
   },
   mutations: {
     update: (state,newData) => {
@@ -18,6 +19,9 @@ const store = new Vuex.Store({
     },
     toggleType: (state,type) => {
       state.contentType=type
+    },
+    updateComment:(state,data)=>{
+      state.eidtComment=data;
     }
   },
   actions:{
@@ -34,6 +38,16 @@ const store = new Vuex.Store({
       wx.setNavigationBarTitle({title});
       ctx.commit('toggleType',contentType)
       ctx.dispatch('getList')
+    },
+    commitEditData(ctx,id){
+      if(!id){ctx.commit('updateComment',{});return;}
+      const db=getDb('comments');
+      console.log('ddd')
+      db.where({
+        _id:id
+      }).get().then(res=>{
+        ctx.commit('updateComment',res.data[0])
+      }).catch(e=>console.log(e))
     }
   }
 })

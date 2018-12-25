@@ -29,7 +29,8 @@ export default {
   },
   data(){
     return{
-      comments:[]
+      comments:[],
+      doEdit:false//编辑批注
     }
   },
   components:{

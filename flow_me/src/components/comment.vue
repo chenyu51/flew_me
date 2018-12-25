@@ -31,6 +31,24 @@ export default {
      this.itemDb=getDb().doc(this.item._id);
      this.plus=this.item.plus;
   },
+  computed:{
+      eidtComment(){
+          return this.$store.state.eidtComment;
+      }
+  },
+  watch:{
+      '$store.state.eidtComment'(){
+          if(this.eidtComment._id){
+              this.showComTextarea=true;
+              this.commentValue=this.eidtComment.content;
+          }
+      },
+      showComTextarea(){
+          if(!this.showComTextarea){
+              this.commentValue='';
+          }
+      }
+  },
   methods: {
       addLike(v){
         this.plus+=v;
@@ -47,6 +65,7 @@ export default {
       },
       commitComment(){
         const $this=this;
+        if(this.eidtComment._id){this.updateComment();return;}
         const comments={content:$this.commentValue,createTime:formatTime(new Date),pid:this.item._id};
         getDb('comments').add({
             data:comments
@@ -55,7 +74,21 @@ export default {
               $this.showComTextarea=false;
               $this.commentValue='';
               $this.$emit('getCom',true);
+              $this.$store.dispatch('commitEditData');
         }).catch(e=>console.log(e))
+      },
+      updateComment(){
+          const $this=this;
+          getDb('comments').doc(this.eidtComment._id).update({
+              data:{
+                  content:$this.commentValue
+              }
+          }).then(res=>{
+              console.log(res)
+              $this.showComTextarea=false;
+              $this.commentValue='';
+              $this.$emit('getCom',true);
+          }).catch(e=>console.log(e))
       },
       DeleteItem(){
           const $this=this;

@@ -3,8 +3,11 @@
     <p class="content">
       {{comItem.createTime}}:
       <span class="content_de">{{comItem.content}}</span>
-      <span class="delete_btn" @click="deleteCom">D</span>
     </p>
+    <div class="bottom_btn">
+      <span class="delete_btn" @click="editCom">E</span>
+      <span class="delete_btn" @click="deleteCom">D</span>
+    </div>
   </div>
 </template>
 
@@ -25,6 +28,9 @@ export default {
     async deleteCom(){
       await this.itemDb.remove();
       this.$emit('getCom',true);
+    },
+    editCom(){
+      this.$store.dispatch('commitEditData',this.comItem._id);
     }
   }
 }
@@ -36,18 +42,25 @@ export default {
   border-bottom:1px solid #F2F2F2;
   font-size:25rpx;
   color:#999999;
+  position:relative;
   padding:30rpx;
-  position: relative;
 }
 .content{
   font-weight:bolder;
+  padding-right:100rpx;
 }
 .content_de{
   color:#333;
 }
+.bottom_btn{
+  text-align: right;
+  position:absolute;
+  top:35rpx;
+  right:10rpx;
+}
 .delete_btn{
   font-size:30rpx;
-  position: absolute;
-  right: 10rpx;
+  line-height: 1;
+  margin:0 20rpx;
 }
 </style>
