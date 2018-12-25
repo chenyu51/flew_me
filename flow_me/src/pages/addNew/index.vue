@@ -1,13 +1,14 @@
 <template>
   <div class='edit_page'>
-    <textarea name="content" id="" cols="30" rows="10" placeholder="请输入内容"></textarea>
-    <uploadImg></uploadImg>
+    <textarea v-model="content" name="content" id="" cols="30" rows="10" placeholder="请输入内容"></textarea>
+    <!-- <uploadImg></uploadImg> -->
     <button @tap="confirmFinish">完成</button>
   </div>
 </template>
 
 <script>
 import uploadImg from '@/components/uploadImg'
+import {getDb,formatTime} from '@/utils/index.js'
 
 export default {
   components: {
@@ -15,12 +16,54 @@ export default {
   },
   data () {
     return {
-      
+      query:{},
+      content:''
     }
   },
+  onLoad(e){
+    this.query=e;
+    this.db=getDb();
+    this.getItem();
+  },
   methods: {
+    addNew(){
+      this.db.add({
+        data:{
+          content:this.content,
+          createTime:formatTime(new Date()),
+          comments:[],
+          type:this.query.type,
+          plus:0
+        }
+      }).then((res)=>{
+        console.log(res)
+      }).catch(e=>console.log(e))
+    },
+    update(){
+      this.db.doc(this.query.id).update({
+        data:{
+          content:this.content
+        }
+      }).then(res=>{
+        console.log(res)
+      }).catch(e=>console.log(e));
+    },
+    getItem(){
+      if(!this.query.id)return;
+      this.db.where({
+        _id:this.query.id
+      }).get().then(res=>{
+        console.log(res)
+        this.query=res.data[0];
+        this.content=res.data[0].content
+      }).catch(e=>console.log(e))
+    },
     confirmFinish(){
-      console.log('提的交')
+      if(this.query.id){
+        this.update();
+      }else{
+        this.addNew();
+      }
     }
   }
 }

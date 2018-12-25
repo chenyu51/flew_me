@@ -8,8 +8,9 @@
 		"newFeature": true
 	},
 	"miniprogramRoot": "dist/wx/",
+	"cloudfunctionRoot": "/static/functions/",
 	"compileType": "miniprogram",
-	"appid": "touristappid",
+	"appid": "wx32944e3351e83e73",
 	"projectname": "flow_me",
 	"condition": {
 		"search": {

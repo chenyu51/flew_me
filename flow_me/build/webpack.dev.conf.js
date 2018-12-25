@@ -20,6 +20,7 @@ var OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin')
 
 module.exports = merge(baseWebpackConfig, {
   module: {
+    // unknownContextCritical : false,
     rules: utils.styleLoaders({
       sourceMap: config.dev.cssSourceMap,
       extract: true

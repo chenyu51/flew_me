@@ -1,10 +1,11 @@
 <template>
   <div class='item_opera'>
       <button @click="addLike"><i class="iconfont icon-xihuan_"></i></button>
-      <p class="plus_icon">+</p><p>{{count}}</p>
+      <p class="plus_icon">+</p><p>{{plus}}</p>
       <button @click='showComment'><i class="iconfont icon-pinglun"></i></button>
+      <button style="vertical-align:bottom;" @click='DeleteItem'>D</button>
       <div :class="showComTextarea?'comment_window_show':'comment_window_hide'" class='comment_window'  @click.self="showComTextarea=false">
-          <textarea name="commentValue" id="" cols="30" rows="10" autofocus></textarea>
+          <textarea v-model='commentValue' name="commentValue" id="" cols="30" rows="10" autofocus></textarea>
           <button @click="commitComment" class="confirm_commit">确定</button>
           <button @click="showComTextarea=false" class="confirm_commit cancel_commit">取消</button>
       </div>
@@ -12,37 +13,62 @@
 </template>
 
 <script>
-require('../assets/iconfont.css')
+
+import {getDb,common_guid,formatTime} from '@/utils/index.js'
 export default {
   props: {
-    item: Object,
-    count:{
-        type:Number,
-        default:0
-    },
+    item: Object
   },
   data(){
       return {
+          plus:0,
+          commentValue:'',
           showComTextarea:false
       }
   },
+  created() {
+     this.itemDb=getDb().doc(this.item._id);
+     this.plus=this.item.plus;
+  },
   methods: {
       addLike(){
-
+        this.plus+=1;
+        this.itemDb.update({
+            data:{
+                plus:this.plus
+            }
+        })
+          .then(res=>console.log(res))
+          .catch(e=>console.log(e))
       },
       showComment(){
           this.showComTextarea=true;
       },
       commitComment(){
-
-          this.showComTextarea=true;
-
+        const $this=this;
+        this.itemDb.update({
+            data:{
+                comments:(this.item.comments||[]).push({
+                            content:this.commentValue,
+                            createTime:formatTime(new Date),
+                            id:common_guid()
+                        })
+            }
+        })
+          .then(res=>{console.log(res);$this.showComTextarea=true;})
+          .catch(e=>console.log(e))
+      },
+      DeleteItem(){
+          this.itemDb.remove()
+          .then(res=>console.log(res))
+          .catch(e=>console.log(e))
       }
   }
 };
 </script>
 
 <style>
+@import url('../assets/iconfont.css');
 .item_opera{
     text-align: right;
     color:#666;

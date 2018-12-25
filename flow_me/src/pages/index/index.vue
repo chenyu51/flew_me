@@ -1,20 +1,23 @@
 <template>
   <btn @toggle="toggleList" :contentType='contentType'>
-    <item></item>
-    <item></item>
+    <item v-for='data in list' :key='data._id' :item='data'></item>
   </btn>
 </template>
 
 <script>
 import btn from '@/components/mainBtn'
 import item from '@/components/item'
+import {getDb} from '@/utils/index.js'
 
 export default {
   data () {
     return {
       contentType:1,
       motto: 'Hello World',
-      userInfo: {}
+      userInfo: {},
+      list:[],
+      pageSize:10,
+      pageNo:1
     }
   },
 
@@ -28,6 +31,15 @@ export default {
       this.contentType=contentType;
       const title=contentType===1?'我的喜悦':'我的伤心';
       wx.setNavigationBarTitle({title});
+      this.getList();
+    },
+    getList(){
+      const db=getDb();
+      db.where({
+        type:this.contentType+''
+      }).get().then((res)=>{
+        this.list=res.data;
+      }).catch(e=>console.log(e))
     },
     bindViewTap () {
       const url = '../logs/main'
@@ -50,10 +62,16 @@ export default {
     }
   },
 
-  created () {
+  created(){
     // 调用应用实例的方法获取全局数据
     // this.getUserInfo()
+    this.getList()
+  },
+  onPullDownRefresh(){
+    console.log('pull')
+    this.getList()
   }
+
 }
 </script>
 

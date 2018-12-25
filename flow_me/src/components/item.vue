@@ -1,10 +1,11 @@
 <template>
   <div class="list_item">
-    <p class='content' @click='editIt(item.id)'>ddd</p>
-    <p class="timer" @click='editIt(item.id)'>2018-10-12 12:12:12</p>
+    <p class='content' @click='editIt(item._id)'>{{item.content}}</p>
+    <p class="timer" @click='editIt(item._id)'>{{item.createTime}}</p>
     <imgs :imgs='item.imgs'></imgs>
-    <comment></comment>
-    <commentList></commentList>
+    <comment :item='item'></comment>
+    <p style="margin-bottom:10px;"></p>
+    <commentList v-for='dt in item.comments' :key='dt.content' :comItem='dt' ></commentList>
   </div>
 </template>
 
@@ -12,7 +13,9 @@
 
 import imgs from '@/components/imgs'
 import comment from '@/components/comment'
-import commentsList from '@/components/commentsList'
+import commentList from '@/components/commentsList'
+import {formatTime} from '@/utils/index.js'
+
 export default {
   props: {
     item: {
@@ -27,7 +30,7 @@ export default {
   components:{
       imgs,
       comment,
-      commentsList
+      commentList
   },
   methods: {
     editIt(id){

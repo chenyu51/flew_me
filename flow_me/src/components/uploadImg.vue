@@ -7,7 +7,7 @@
 
 <script>
 import imgs from '@/components/imgs'
-// import * as tools from '@/utils/index.js'
+import tools from '@/utils/index.js'
 
 export default {
   props: ['text'],

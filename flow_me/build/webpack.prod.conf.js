@@ -15,6 +15,7 @@ var env = config.build.env
 
 var webpackConfig = merge(baseWebpackConfig, {
   module: {
+    // unknownContextCritical : false,
     rules: utils.styleLoaders({
       sourceMap: config.build.productionSourceMap,
       extract: true

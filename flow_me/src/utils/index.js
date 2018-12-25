@@ -17,6 +17,7 @@ export function formatTime(date) {
 
   return `${t1} ${t2}`
 }
+
 //拍照
 export function TackPic() {
   return new Promise((resolve, reject) => {
@@ -60,8 +61,48 @@ export function previewPic(src, imgArr) {
       urls: imgArr,
   });
 }
+export function getDb(){
+  const db = wx.cloud.database();
+  const lists = db.collection('flowList');
+  return lists;
+}
+
+export function common_guid() {
+  var d = new Date().getTime();
+  var uuid = 'xxxxxxxxxxxx4xxxyxxxxxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+    var r = (d + Math.random() * 16) % 16 | 0;
+    d = d / 16 | 0;
+    return (c == 'x' ? r : (r & 0x7 | 0x8)).toString(16);
+  });
+  uuid = uuid.replace(/-/g, "");
+  return uuid;
+}
+
+function formatNumber(n) {
+	n = n.toString();
+	return n[1] ? n : '0' + n;
+};
+
+export function myFormatTime (date) {
+	var year = date.getFullYear();
+	var month = date.getMonth() + 1;
+	var day = date.getDate();
+
+	var hour = date.getHours();
+	var minute = date.getMinutes();
+	var second = date.getSeconds();
+
+	return [year, month, day].map(formatNumber).join('/') + ' ' + [hour, minute, second].map(formatNumber).join(':');
+};
+
 
 export default {
   formatNumber,
+  formatTime,
+  previewPic,
+  uploadFile,
+  TackPic,
+  getDb,
+  common_guid,
   formatTime
 }
