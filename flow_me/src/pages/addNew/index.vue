@@ -25,10 +25,6 @@ export default {
     this.db=getDb();
     this.getItem();
   },
-  onHide(){
-    this.content='';
-    this.query={};
-  },
   methods: {
     addNew(){
       this.db.add({
@@ -53,7 +49,11 @@ export default {
       }).catch(e=>console.log(e));
     },
     getItem(){
-      if(!this.query.id)return;
+      if(!this.query.id){
+        this.query={};
+        this.content='';
+        return;
+      }
       this.db.where({
         _id:this.query.id
       }).get().then(res=>{

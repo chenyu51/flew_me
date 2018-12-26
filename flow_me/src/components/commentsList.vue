@@ -57,8 +57,8 @@ export default {
 .bottom_btn{
   text-align: right;
   position:absolute;
-  top:35rpx;
-  right:10rpx;
+  top:10rpx;
+  right:-5rpx;
 }
 .delete_btn{
   font-size:30rpx;
