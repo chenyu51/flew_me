@@ -1,10 +1,10 @@
 <template>
   <div class='item_opera'>
-      <button @click="addLike(-1)"><i class="iconfont icon-xihuan_ minus_icon"></i></button>
-      <button @click="addLike(1)"><i class="iconfont icon-xihuan_"></i></button>
+      <div @click="addLike(-1)"><i class="iconfont icon-xihuan_ minus_icon"></i></div>
+      <div @click="addLike(1)"><i class="iconfont icon-xihuan_"></i></div>
       <p class="plus_icon">+</p><p>{{plus}}</p>
-      <button @click='showComment'><i class="iconfont icon-pinglun"></i></button>
-      <button class="delete_btn" @click='DeleteItem'>D</button>
+      <div @click='showComment'><i class="iconfont icon-pinglun"></i></div>
+      <div class="delete_btn" @click='DeleteItem'>D</div>
       <div :class="showComTextarea?'comment_window_show':'comment_window_hide'" class='comment_window'  @click.self="showComTextarea=false">
           <textarea v-model='commentValue' name="commentValue" id="" cols="30" rows="10" autofocus></textarea>
           <button @click="commitComment" class="confirm_commit">确定</button>
@@ -108,15 +108,18 @@ export default {
     text-align: right;
     color:#666;
 }
+.comment_window button,
 .item_opera p,
 .item_opera i,
-.item_opera button{
+.item_opera div{
     font-size:40rpx;
     padding: 0;
     line-height: 1;
+    width:auto;
     display: inline-block;
     background: none;
     vertical-align: middle;
+    margin:0 5rpx;
 }
 .item_opera button{
     margin:0 30rpx;
@@ -136,7 +139,8 @@ i.icon-pinglun{
 .item_opera p.plus_icon{
     margin-top:-1rpx;
 }
-.comment_window{
+.item_opera .comment_window{
+    display: block;
     width:100vw;
     height: 100vh;
     background: rgba(0,0,0,.5);
@@ -145,6 +149,7 @@ i.icon-pinglun{
     left:0;
     top:0;
     z-index: 99999;
+
 }
 .comment_window_show{
     transform: scale(1);
@@ -164,6 +169,7 @@ i.icon-pinglun{
     box-sizing: border-box;
     box-shadow: 0 0 3px 5px rgba(253, 233, 233, 0.5);
 }
+
 .comment_window button.confirm_commit{
     display: inine-block;
     width:40%;
@@ -175,9 +181,12 @@ i.icon-pinglun{
 .comment_window button.cancel_commit{
     background: rgb(238, 237, 237);
 }
-.item_opera button.delete_btn{
+.item_opera div.delete_btn{
     vertical-align:bottom;
     background: #f1c0c0;
     color:#fff;
+    width:40rpx;
+    line-height:40rpx;
+    margin-left:30rpx;
 }
 </style>

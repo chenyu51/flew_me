@@ -44,12 +44,12 @@ export default {
   font-size:25rpx;
   color:#999999;
   position:relative;
-  padding:30rpx;
+  padding:20rpx;
 }
 .content{
   font-weight:bolder;
   padding-right:100rpx;
-  font-size:30rpx;
+  font-size:20rpx;
 }
 .content_de{
   color:#333;

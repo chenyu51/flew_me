@@ -1,6 +1,6 @@
 <template>
   <div class="list_item">
-    <p class='content' @click='editIt(item._id)'>{{item.content}}</p>
+    <p class="item_content" @click='editIt(item._id)'>{{item.content}}</p>
     <p class="timer" @click='editIt(item._id)'>{{item.createTime}}</p>
     <imgs :imgs='item.imgs'></imgs>
     <comment :item='item' @getCom='getComments' @doEdit='editCom' :edit='editComment'></comment>
@@ -68,13 +68,17 @@ export default {
     background: #fff;
     box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, .1);
 }
+.item_content{
+  font-weight: bolder;
+}
 .list_item>p{
   padding:0 30rpx;
   padding-bottom:0;
+  font-size:25rpx;
 }
 .list_item>p.timer{
   padding:0 30rpx;
   color:#999;
-  font-size:30rpx;
+  font-size:20rpx;
 }
 </style>
