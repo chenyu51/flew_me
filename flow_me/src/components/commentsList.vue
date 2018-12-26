@@ -49,6 +49,7 @@ export default {
 .content{
   font-weight:bolder;
   padding-right:100rpx;
+  font-size:30rpx;
 }
 .content_de{
   color:#333;
