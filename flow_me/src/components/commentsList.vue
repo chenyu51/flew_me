@@ -5,8 +5,8 @@
       <span class="content_de">{{comItem.content}}</span>
     </p>
     <div class="bottom_btn">
-      <span class="delete_btn" @click="editCom">E</span>
-      <span class="delete_btn" @click="deleteCom">D</span>
+      <span class="edit_btn" @click="editCom">E</span>
+      <span class="edit_btn delete_btn" @click="deleteCom">D</span>
     </div>
   </div>
 </template>
@@ -60,7 +60,7 @@ export default {
   top:10rpx;
   right:-5rpx;
 }
-.delete_btn{
+.edit_btn{
   font-size:30rpx;
   line-height: 1;
   margin:0 10rpx;
@@ -73,6 +73,9 @@ export default {
   text-align: center;
   border-radius: 50%;
   
+}
+.delete_btn{
+  margin-left:20rpx; 
 }
 
 </style>

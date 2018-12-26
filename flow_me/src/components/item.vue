@@ -47,11 +47,14 @@ export default {
     },
     editCom(e){
       this.editComment=e
+      if(e==false){
+        this.$store.dispatch('commitEditData');
+      }
     },
     getComments(){
       const $this=this;
       getDb('comments').where({pid:$this.item._id}).get().then(res=>{
-        this.comments=res.data;
+        $this.comments=res.data;
       }).catch(e=>console.log(e))
     },
     editIt(id){
