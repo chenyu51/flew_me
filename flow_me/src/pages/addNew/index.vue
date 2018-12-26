@@ -1,6 +1,6 @@
 <template>
   <div class='edit_page'>
-    <textarea v-model="content" name="content" id="" cols="30" rows="10" placeholder="请输入内容"></textarea>
+    <textarea v-model="content" name="content" id="" cols="25" rows="10" placeholder="请输入内容"></textarea>
     <!-- <uploadImg></uploadImg> -->
     <button @tap="confirmFinish">完成</button>
   </div>
@@ -79,11 +79,11 @@ export default {
 .edit_page textarea{
   display: inline-block;
   background:rgba(253, 233, 233, 0.2);
-  /* background:rgba(219, 219, 219, 0.3); */
   box-shadow: 0 0 10px 5px rgba(0,0,0,.1);
   width: 100%;
   text-align: left;
   padding:30rpx;
+  box-sizing: border-box;
 }
 button{
   background: #FFF0F5;
