@@ -27,6 +27,7 @@ export default {
   },
   methods: {
     addNew(){
+      console.log('add')
       this.db.add({
         data:{
           content:this.content,
@@ -36,6 +37,7 @@ export default {
           plus:0
         }
       }).then((res)=>{
+        
         goback()
       }).catch(e=>console.log(e))
     },
@@ -50,7 +52,6 @@ export default {
     },
     getItem(){
       if(!this.query.id){
-        this.query={};
         this.content='';
         return;
       }
