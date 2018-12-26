@@ -3,7 +3,7 @@
       <div @click="addLike(-1)"><i class="iconfont icon-xihuan_ minus_icon"></i></div>
       <div @click="addLike(1)"><i class="iconfont icon-xihuan_"></i></div>
       <p class="plus_icon">+</p><p>{{plus}}</p>
-      <docomment :edit='edit' @doEdit="$emit('doEdit',false)"></docomment>
+      <docomment :edit='edit' :item='item' @doEdit="$emit('doEdit',false)"></docomment>
       <div class="delete_btn" @click='DeleteItem'>D</div>
   </div>
 </template>
