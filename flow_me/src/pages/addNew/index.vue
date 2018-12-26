@@ -27,7 +27,6 @@ export default {
   },
   methods: {
     addNew(){
-      console.log('add')
       this.db.add({
         data:{
           content:this.content,
